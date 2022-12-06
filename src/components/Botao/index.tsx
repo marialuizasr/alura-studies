@@ -1,17 +1,18 @@
 import React from "react";
 import style from './Botao.module.scss';
 
-class Botao extends React.Component <{ 
+interface Props {
     texto: string, 
-    type?: "button" | "submit" | "reset" | undefined }> { // '?' quer dizer que type eh opcional
-    render() {
-        const { type = "button" } = this.props; // diz que se nao tiver um type, type = 'button' por padrao
-        return (
-            <button type={ type } className={ style.botao }>
-                { this.props.texto }
-            </button>
-        )
-    }
+    type?: "button" | "submit" | "reset" | undefined,
+    onClick?: () => void  // '?' quer dizer que type eh opcional
+}
+
+function Botao({ onClick, type, texto } : Props) {
+    return (
+        <button onClick={onClick} type={ type } className={ style.botao }>
+            { texto }
+        </button>
+    )
 }
 
 export default Botao;
